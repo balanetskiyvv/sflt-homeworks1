@@ -9,6 +9,9 @@ terraform {
   }
 }
 
+variable "public_key_path" {
+  description = "~/.ssh/rsa_terraform.pub"
+
 variable "yandex_cloud_token" {
     type = string
     description = "Please enter your 0Auth token"
