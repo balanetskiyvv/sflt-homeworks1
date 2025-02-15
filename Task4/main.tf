@@ -55,7 +55,7 @@ resource "yandex_lb_target_group" "group1" {
     for_each = yandex_compute_instance.vm
     content {
         subnet_id = yandex_vpc_subnet.subnet1.id
-        addresa = target.value.network_interface.0.ip_address
+        address = target.value.network_interface.0.ip_address
     }
   }
 }
