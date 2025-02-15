@@ -10,7 +10,8 @@ terraform {
 }
 
 variable "public_key_path" {
-  description = "~/.ssh/rsa_terraform.pub"
+  default = "~/.ssh/rsa_terraform.pub"
+}
 
 variable "yandex_cloud_token" {
     type = string
@@ -46,7 +47,10 @@ resource "yandex_compute_instance" "vm" {
     memory = 2
   }
 
-  metadata = { user-data = "${file("users.yml")}" }
+  metadata = { 
+    ssh-keys = var.public_key_path
+    user-data = "${file("metadata.yml")}"
+  }
 }
 
 resource "yandex_vpc_network" "network1" {
