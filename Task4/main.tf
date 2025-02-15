@@ -9,7 +9,15 @@ terraform {
   }
 }
 
+variable "yandex_cloud_token" {
+    type = string
+    description = "Please enter your 0Auth token"
+}
+
 provider "yandex" {
+  token = var.yandex_cloud_token
+  cloud_id = "b1g9buch9n733l8f1n53"
+  folder_id = "b1g2pn3mjr53ojse3crm"
   zone = "ru-central1-b"
 }
 
@@ -20,12 +28,12 @@ resource "yandex_compute_instance" "vm" {
   boot_disk {
     initialize_params {
         image_id = "fd8epq5qp2v73a23oir4"
-        size = 8
+        size = 10
     }
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
+    subnet_id = yandex_vpc_subnet.subnet1.id
     nat = true
   }
 
